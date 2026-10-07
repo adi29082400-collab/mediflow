@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MediFlow - Patient Portal</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>MEDIFLOW</h1>
+
+        <p>Patient Portal</p>
+
+    </header>
+
+
+    <main class="container">
+
+
+        <!-- =========================================
+             WELCOME SECTION
+        ========================================== -->
+
+        <div class="card">
+
+            <h2>Welcome to MediFlow</h2>
+
+            <p>
+                View available doctors, book appointments,
+                and check medicine availability before
+                visiting the hospital.
+            </p>
+
+        </div>
+
+
+        <!-- =========================================
+             AVAILABLE DOCTORS
+        ========================================== -->
+
+        <div class="card">
+
+            <h2>Available Doctors</h2>
+
+            <p>
+                View the doctors currently available
+                for consultation.
+            </p>
+
+            <div id="doctorList">
+
+                <p>
+                    Loading doctors...
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================================
+             MEDICINE AVAILABILITY
+        ========================================== -->
+
+        <div class="card">
+
+            <h2>Medicine Availability</h2>
+
+            <p>
+                Search for a medicine to check its
+                availability, stock quantity, and
+                pharmacy location.
+            </p>
+
+
+            <div class="form-group">
+
+                <label for="medicineSearch">
+                    Medicine Name
+                </label>
+
+                <input
+                    type="text"
+                    id="medicineSearch"
+                    placeholder="Example: Paracetamol"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <button
+                type="button"
+                onclick="searchMedicine()"
+            >
+                Search Medicine
+            </button>
+
+
+            <div
+                id="medicineResult"
+                style="margin-top: 20px;"
+            >
+
+                <p>
+                    Enter a medicine name to check availability.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================================
+             LOGOUT
+        ========================================== -->
+
+        <div class="card">
+
+            <button
+                type="button"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Search Patient - MediFlow</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <header class="topbar">
+
+        <div>
+
+            <h1>🏥 MediFlow</h1>
+
+            <p>
+                Hospital Management System
+            </p>
+
+        </div>
+
+        <button
+            class="logout"
+            onclick="location.href='dashboard.html'">
+
+            Dashboard
+
+        </button>
+
+    </header>
+
+    <main>
+
+        <div class="patients-container">
+
+            <div class="patients-header">
+
+                <div>
+
+                    <h2>
+                        Search Patient
+                    </h2>
+
+                    <p>
+                        Find a patient using ID or Name + Phone
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="form-container">
+
+                <h3>
+                    Search by Patient ID
+                </h3>
+
+                <label for="searchPatientId">
+                    Patient ID
+                </label>
+
+                <input
+                    type="number"
+                    id="searchPatientId"
+                    placeholder="Enter Patient ID">
+
+                <button
+                    class="primary-button"
+                    type="button"
+                    onclick="searchPatient()">
+
+                    Search by ID
+
+                </button>
+
+            </div>
+
+            <div class="form-container">
+
+                <h3>
+                    Search by Name + Phone
+                </h3>
+
+                <label for="searchPatientName">
+                    Patient Name
+                </label>
+
+                <input
+                    type="text"
+                    id="searchPatientName"
+                    placeholder="Enter patient name">
+
+                <label for="searchPatientPhone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="text"
+                    id="searchPatientPhone"
+                    placeholder="Enter 10 digit phone number"
+                    maxlength="10">
+
+                <button
+                    class="primary-button"
+                    type="button"
+                    onclick="searchPatientByNamePhone()">
+
+                    Search by Name + Phone
+
+                </button>
+
+            </div>
+
+            <div
+                id="patientResult"
+                class="form-container">
+
+                <p>
+                    Search results will appear here.
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MediFlow Dashboard</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <header class="topbar">
+
+        <div>
+
+            <h1>🏥 MediFlow</h1>
+
+            <p>
+                Hospital Management System
+            </p>
+
+        </div>
+
+        <button
+            class="logout"
+            onclick="logout()">
+
+            Logout
+
+        </button>
+
+    </header>
+
+    <main class="dashboard-main">
+
+        <div class="dashboard-heading">
+
+            <div>
+
+                <h2>
+                    Staff Dashboard
+                </h2>
+
+                <p>
+                    Manage patients, appointments and hospital records
+                </p>
+
+            </div>
+
+        </div>
+
+        <section class="dashboard-section">
+
+            <h3>
+                Patient Management
+            </h3>
+
+            <div class="cards">
+
+                <div
+                    class="card"
+                    onclick="location.href='add-patient.html'">
+
+                    <div class="icon">
+                        👤
+                    </div>
+
+                    <h3>
+                        Add Patient
+                    </h3>
+
+                    <p>
+                        Register a new patient
+                    </p>
+
+                </div>
+
+                <div
+                    class="card"
+                    onclick="location.href='view-patient.html'">
+
+                    <div class="icon">
+                        📋
+                    </div>
+
+                    <h3>
+                        View Patients
+                    </h3>
+
+                    <p>
+                        View all patient records
+                    </p>
+
+                </div>
+
+                <div
+                    class="card"
+                    onclick="location.href='search-patient.html'">
+
+                    <div class="icon">
+                        🔍
+                    </div>
+
+                    <h3>
+                        Search Patient
+                    </h3>
+
+                    <p>
+                        Find a patient by ID or details
+                    </p>
+
+                </div>
+
+                <div
+                    class="card"
+                    onclick="location.href='update-patient.html'">
+
+                    <div class="icon">
+                        ✏️
+                    </div>
+
+                    <h3>
+                        Update Patient
+                    </h3>
+
+                    <p>
+                        Edit patient information
+                    </p>
+
+                </div>
+
+                <div
+                    class="card"
+                    onclick="location.href='delete-patient.html'">
+
+                    <div class="icon">
+                        🗑️
+                    </div>
+
+                    <h3>
+                        Delete Patient
+                    </h3>
+
+                    <p>
+                        Remove a patient record
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- APPOINTMENT MANAGEMENT -->
+
+        <section class="dashboard-section">
+
+            <h3>
+                Appointment Management
+            </h3>
+
+            <div class="cards">
+
+                <div
+                    class="card"
+                    onclick="location.href='manage-appointments.html'">
+
+                    <div class="icon">
+                        📅
+                    </div>
+
+                    <h3>
+                        Manage Appointments
+                    </h3>
+
+                    <p>
+                        View appointments and update their status
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

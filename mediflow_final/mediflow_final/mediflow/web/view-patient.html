@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MediFlow | View Patients</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="topbar">
+        <h2>MediFlow</h2>
+
+        <button onclick="logout()">
+            Logout
+        </button>
+    </div>
+
+    <main class="patients-container">
+
+        <div class="page-header">
+            <h1>Patient Records</h1>
+
+            <p>
+                View all registered patient information
+            </p>
+        </div>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Disease</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Medical History</th>
+                        <th>Allergies</th>
+                    </tr>
+                </thead>
+
+                <tbody id="patientTable">
+
+                    <tr>
+                        <td colspan="9">
+                            Loading patients...
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="back-button-container">
+
+            <button onclick="window.location.href='dashboard.html'">
+                Back to Dashboard
+            </button>
+
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            loadPatients();
+        });
+    </script>
+
+</body>
+
+</html>

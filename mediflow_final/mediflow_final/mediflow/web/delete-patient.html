@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Delete Patient - MediFlow</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <header class="topbar">
+
+        <div>
+
+            <h1>🏥 MediFlow</h1>
+
+            <p>
+                Hospital Management System
+            </p>
+
+        </div>
+
+        <button
+            class="logout"
+            onclick="location.href='dashboard.html'">
+
+            Dashboard
+
+        </button>
+
+    </header>
+
+    <main>
+
+        <div class="patients-container">
+
+            <div class="patients-header">
+
+                <div>
+
+                    <h2>
+                        Delete Patient
+                    </h2>
+
+                    <p>
+                        Remove a patient record from the system
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="form-container">
+
+                <h3>
+                    Delete Patient Record
+                </h3>
+
+                <label for="deletePatientId">
+                    Patient ID
+                </label>
+
+                <input
+                    type="number"
+                    id="deletePatientId"
+                    placeholder="Enter Patient ID"
+                    required>
+
+                <button
+                    class="primary-button"
+                    type="button"
+                    onclick="deletePatient()">
+
+                    Delete Patient
+
+                </button>
+
+                <div
+                    id="deletePatientResult">
+
+                    <p>
+                        Enter a Patient ID to delete the record.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

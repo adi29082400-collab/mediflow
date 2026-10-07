@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MediFlow - Book Appointment</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>MEDIFLOW</h1>
+
+    <p>Book Appointment</p>
+
+</header>
+
+
+<main class="container">
+
+    <div class="card">
+
+        <h2>Book an Appointment</h2>
+
+        <p>
+            Existing patient? Enter your Patient ID and
+            search for your details.
+            New patient? Leave the Patient ID blank
+            and enter your details.
+        </p>
+
+
+        <div id="appointmentModeMessage"
+             style="margin-bottom: 15px;">
+
+            <strong>
+                New Patient Mode
+            </strong>
+
+            <p>
+                Enter your details below.
+            </p>
+
+        </div>
+
+
+        <form onsubmit="bookAppointment(event)">
+
+
+            <!-- PATIENT ID -->
+
+            <label for="appointmentPatientId">
+                Patient ID
+            </label>
+
+            <div>
+
+                <input
+                    type="number"
+                    id="appointmentPatientId"
+                    placeholder="Enter Patient ID"
+                    min="1"
+                    oninput="handleAppointmentPatientIdChange()"
+                >
+
+                <button
+                    type="button"
+                    onclick="loadAppointmentPatient()"
+                >
+                    Search Patient
+                </button>
+
+                <button
+                    type="button"
+                    onclick="prepareNewAppointmentPatient()"
+                >
+                    New Patient
+                </button>
+
+            </div>
+
+            <small>
+                Existing patient: enter Patient ID and click
+                Search Patient.
+                New patient: click New Patient.
+            </small>
+
+
+            <div id="appointmentPatientResult"></div>
+
+
+            <!-- PATIENT NAME -->
+
+            <label for="appointmentPatientName">
+                Patient Name
+            </label>
+
+            <input
+                type="text"
+                id="appointmentPatientName"
+                placeholder="Enter Patient Name"
+                required
+            >
+
+
+            <!-- AGE -->
+
+            <label for="appointmentPatientAge">
+                Age
+            </label>
+
+            <input
+                type="number"
+                id="appointmentPatientAge"
+                placeholder="Enter Age"
+                min="0"
+                max="150"
+                required
+            >
+
+
+            <!-- GENDER -->
+
+            <label for="appointmentPatientGender">
+                Gender
+            </label>
+
+            <select
+                id="appointmentPatientGender"
+                required
+            >
+
+                <option value="">
+                    Select Gender
+                </option>
+
+                <option value="Male">
+                    Male
+                </option>
+
+                <option value="Female">
+                    Female
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+
+            <!-- DISEASE -->
+
+            <label for="appointmentPatientDisease">
+                Disease
+            </label>
+
+            <input
+                type="text"
+                id="appointmentPatientDisease"
+                placeholder="Enter disease"
+            >
+
+
+            <!-- PHONE -->
+
+            <label for="appointmentPatientPhone">
+                Phone Number
+            </label>
+
+            <input
+                type="tel"
+                id="appointmentPatientPhone"
+                placeholder="Enter Phone Number"
+                maxlength="10"
+                required
+            >
+
+
+            <!-- ADDRESS -->
+
+            <label for="appointmentPatientAddress">
+                Address
+            </label>
+
+            <textarea
+                id="appointmentPatientAddress"
+                rows="3"
+                placeholder="Enter Address"
+                required
+            ></textarea>
+
+
+            <!-- MEDICAL HISTORY -->
+
+            <label for="appointmentPatientMedicalHistory">
+                Previous Medical History
+            </label>
+
+            <textarea
+                id="appointmentPatientMedicalHistory"
+                rows="3"
+                placeholder="Enter Previous Medical History"
+            ></textarea>
+
+
+            <!-- ALLERGIES -->
+
+            <label for="appointmentPatientAllergies">
+                Allergies
+            </label>
+
+            <textarea
+                id="appointmentPatientAllergies"
+                rows="3"
+                placeholder="Enter known allergies"
+            ></textarea>
+
+
+            <!-- DOCTOR -->
+
+            <label for="appointmentDoctor">
+                Select Doctor
+            </label>
+
+            <select
+                id="appointmentDoctor"
+                required
+            >
+
+                <option value="">
+                    Loading doctors...
+                </option>
+
+            </select>
+
+
+            <!-- DATE -->
+
+            <label for="appointmentDate">
+                Appointment Date
+            </label>
+
+            <input
+                type="date"
+                id="appointmentDate"
+                required
+            >
+
+
+            <!-- TIME -->
+
+            <label for="appointmentTime">
+                Appointment Time
+            </label>
+
+            <input
+                type="time"
+                id="appointmentTime"
+                required
+            >
+
+
+            <!-- REASON -->
+
+            <label for="appointmentReason">
+                Reason for Visit
+            </label>
+
+            <textarea
+                id="appointmentReason"
+                rows="4"
+                placeholder="Enter reason for appointment"
+            ></textarea>
+
+
+            <!-- BOOK -->
+
+            <button type="submit">
+                Book Appointment
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- APPOINTMENT RESULT -->
+
+    <div
+        class="card"
+        id="appointmentResult"
+    >
+
+        <h2>
+            Appointment Information
+        </h2>
+
+        <p>
+            Your appointment details will
+            appear here after booking.
+        </p>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <div class="card">
+
+        <button
+            type="button"
+            onclick="window.location.href='patient-portal.html'"
+        >
+            Back to Patient Portal
+        </button>
+
+        <button
+            type="button"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</main>
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+    /*
+        EXISTING PATIENT RULE
+
+        Locked:
+        - Patient ID
+        - Name
+        - Age
+        - Gender
+        - Address
+
+        Editable:
+        - Disease
+        - Phone
+        - Medical History
+        - Allergies
+
+        Appointment fields are always editable.
+    */
+
+
+    function lockExistingPatientFields() {
+
+        document.getElementById(
+            "appointmentPatientName"
+        ).readOnly = true;
+
+
+        document.getElementById(
+            "appointmentPatientAge"
+        ).readOnly = true;
+
+
+        document.getElementById(
+            "appointmentPatientGender"
+        ).disabled = true;
+
+
+        document.getElementById(
+            "appointmentPatientAddress"
+        ).readOnly = true;
+
+
+        /*
+            Disease is intentionally NOT locked.
+        */
+
+        document.getElementById(
+            "appointmentModeMessage"
+        ).innerHTML = `
+            <strong>Existing Patient Mode</strong>
+
+            <p>
+                Patient ID, Name, Age, Gender, and Address
+                are locked.
+                You can update Disease, Phone Number,
+                Medical History, and Allergies.
+            </p>
+        `;
+    }
+
+
+    function unlockNewPatientFields() {
+
+        document.getElementById(
+            "appointmentPatientName"
+        ).readOnly = false;
+
+
+        document.getElementById(
+            "appointmentPatientAge"
+        ).readOnly = false;
+
+
+        document.getElementById(
+            "appointmentPatientGender"
+        ).disabled = false;
+
+
+        document.getElementById(
+            "appointmentPatientAddress"
+        ).readOnly = false;
+
+
+        document.getElementById(
+            "appointmentModeMessage"
+        ).innerHTML = `
+            <strong>New Patient Mode</strong>
+
+            <p>
+                Enter the patient's details below.
+                MediFlow will automatically assign a Patient ID.
+            </p>
+        `;
+    }
+
+
+    function prepareNewAppointmentPatient() {
+
+        document.getElementById(
+            "appointmentPatientId"
+        ).value = "";
+
+
+        document.getElementById(
+            "appointmentPatientName"
+        ).value = "";
+
+
+        document.getElementById(
+            "appointmentPatientAge"
+        ).value = "";
+
+
+        document.getElementById(
+            "appointmentPatientGender"
+        ).value = "";
+
+
+        document.getElementById(
+            "appointmentPatientDisease"
+        ).value = "";
+
+
+        document.getElementById(
+            "appointmentPatientPhone"
+        ).value = "";
+
+
+        document.getElementById(
+            "appointmentPatientAddress"
+        ).value = "";
+
+
+        document.getElementById(
+            "appointmentPatientMedicalHistory"
+        ).value = "";
+
+
+        document.getElementById(
+            "appointmentPatientAllergies"
+        ).value = "";
+
+
+        document.getElementById(
+            "appointmentPatientResult"
+        ).innerHTML = "";
+
+
+        unlockNewPatientFields();
+    }
+
+
+    function handleAppointmentPatientIdChange() {
+
+        const patientId =
+            document.getElementById(
+                "appointmentPatientId"
+            ).value.trim();
+
+
+        if (patientId === "") {
+
+            unlockNewPatientFields();
+
+        }
+
+    }
+
+
+    /*
+        Wrap the existing patient-search function.
+
+        When an existing patient is successfully loaded,
+        the locked fields are made read-only.
+        Disease remains editable.
+    */
+
+    const originalLoadAppointmentPatient =
+        window.loadAppointmentPatient;
+
+
+    window.loadAppointmentPatient = async function() {
+
+        if (
+            typeof originalLoadAppointmentPatient !==
+            "function"
+        ) {
+
+            alert(
+                "Patient search function was not found."
+            );
+
+            return;
+        }
+
+
+        await originalLoadAppointmentPatient();
+
+
+        const patientName =
+            document.getElementById(
+                "appointmentPatientName"
+            ).value.trim();
+
+
+        if (patientName !== "") {
+
+            lockExistingPatientFields();
+
+        }
+
+    };
+
+</script>
+
+
+</body>
+
+</html> 

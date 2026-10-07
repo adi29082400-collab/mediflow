@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Appointments - MediFlow</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <header class="topbar">
+
+        <div>
+            <h1>🏥 MediFlow</h1>
+            <p>Hospital Management System</p>
+        </div>
+
+        <button
+            class="logout"
+            onclick="location.href='dashboard.html'">
+            Back
+        </button>
+
+    </header>
+
+    <main class="dashboard-main">
+
+        <div class="dashboard-heading">
+
+            <div>
+                <h2>📅 Manage Appointments</h2>
+
+                <p>
+                    Search appointments and update their status
+                </p>
+            </div>
+
+        </div>
+
+        <section class="dashboard-section">
+
+            <h3>Find Patient Appointments</h3>
+
+            <div class="form-group">
+
+                <label for="staffAppointmentPatientId">
+                    Patient ID
+                </label>
+
+                <input
+                    type="number"
+                    id="staffAppointmentPatientId"
+                    placeholder="Enter Patient ID"
+                    min="1">
+
+            </div>
+
+            <br>
+
+            <button
+                type="button"
+                class="primary-button"
+                onclick="loadStaffAppointments()">
+
+                Search Appointments
+
+            </button>
+
+        </section>
+
+
+        <section class="dashboard-section">
+
+            <h3>Appointment Records</h3>
+
+            <div id="staffAppointmentMessage"></div>
+
+            <div id="staffAppointmentList">
+
+                <p>
+                    Enter a Patient ID to view appointments.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

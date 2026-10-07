@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Update Patient - MediFlow</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <header class="topbar">
+
+        <div>
+
+            <h1>🏥 MediFlow</h1>
+
+            <p>
+                Hospital Management System
+            </p>
+
+        </div>
+
+        <button
+            class="logout"
+            onclick="location.href='dashboard.html'">
+
+            Dashboard
+
+        </button>
+
+    </header>
+
+
+    <main>
+
+        <div class="patients-container">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="patients-header">
+
+                <div>
+
+                    <h2>
+                        Update Patient
+                    </h2>
+
+                    <p>
+                        Search for a patient and update their information
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- SEARCH PATIENT -->
+
+            <div class="form-container">
+
+                <h3>
+                    Find Patient
+                </h3>
+
+
+                <label for="updateSearchType">
+                    Search By
+                </label>
+
+                <select id="updateSearchType">
+
+                    <option value="id">
+                        Patient ID
+                    </option>
+
+                    <option value="name">
+                        Patient Name
+                    </option>
+
+                </select>
+
+
+                <label for="updateSearchValue">
+                    Patient ID / Name
+                </label>
+
+                <input
+                    type="text"
+                    id="updateSearchValue"
+                    placeholder="Enter patient ID or name">
+
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    onclick="searchPatientForUpdate()">
+
+                    Search Patient
+
+                </button>
+
+
+                <div id="updateSearchResult"></div>
+
+            </div>
+
+
+            <!-- UPDATE FORM -->
+
+            <div
+                class="form-container"
+                id="updateFormSection"
+                style="display: none;">
+
+                <h3>
+                    Patient Information
+                </h3>
+
+                <p>
+                    Patient ID, name, age, gender, disease, and address
+                    cannot be changed.
+                    Only phone number, medical history, and allergies
+                    can be updated.
+                </p>
+
+
+                <!-- PATIENT ID -->
+
+                <label for="updateId">
+                    Patient ID
+                </label>
+
+                <input
+                    type="number"
+                    id="updateId"
+                    readonly>
+
+
+                <!-- NAME -->
+
+                <label for="updateName">
+                    Patient Name
+                </label>
+
+                <input
+                    type="text"
+                    id="updateName"
+                    readonly>
+
+
+                <!-- AGE -->
+
+                <label for="updateAge">
+                    Age
+                </label>
+
+                <input
+                    type="number"
+                    id="updateAge"
+                    readonly>
+
+
+                <!-- GENDER -->
+
+                <label for="updateGender">
+                    Gender
+                </label>
+
+                <select
+                    id="updateGender"
+                    disabled>
+
+                    <option value="">
+                        Select Gender
+                    </option>
+
+                    <option value="Male">
+                        Male
+                    </option>
+
+                    <option value="Female">
+                        Female
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+
+                <!-- DISEASE -->
+
+                <label for="updateDisease">
+                    Disease
+                </label>
+
+                <input
+                    type="text"
+                    id="updateDisease"
+                    placeholder="Enter disease"
+                    required>
+
+
+                <!-- PHONE - EDITABLE -->
+
+                <label for="updatePhone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="text"
+                    id="updatePhone"
+                    placeholder="Enter 10 digit phone number"
+                    pattern="[0-9]{10}"
+                    maxlength="10"
+                    required>
+
+
+                <!-- ADDRESS -->
+
+                <label for="updateAddress">
+                    Address
+                </label>
+
+                <textarea
+                    id="updateAddress"
+                    rows="3"
+                    readonly></textarea>
+
+
+                <!-- MEDICAL HISTORY - EDITABLE -->
+
+                <label for="updateMedicalHistory">
+                    Previous Medical History
+                </label>
+
+                <textarea
+                    id="updateMedicalHistory"
+                    rows="4"
+                    placeholder="Enter previous medical history"
+                    required></textarea>
+
+
+                <!-- ALLERGIES - EDITABLE -->
+
+                <label for="updateAllergies">
+                    Allergies
+                </label>
+
+                <textarea
+                    id="updateAllergies"
+                    rows="3"
+                    placeholder="Enter known allergies, if any"></textarea>
+
+
+                <!-- UPDATE BUTTON -->
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    onclick="updatePatient()">
+
+                    Update Patient
+
+                </button>
+
+
+                <!-- CANCEL -->
+
+                <button
+                    type="button"
+                    class="logout"
+                    onclick="clearUpdateForm()">
+
+                    Cancel
+
+                </button>
+
+
+                <div id="updateResult"></div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
